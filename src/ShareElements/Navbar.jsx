@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaBook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,17 +49,17 @@ const Navbar = () => {
         </ul>
 
         {/* Login Button */}
-        <div className="hidden lg:flex">
-          <a className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold shadow-md hover:scale-105 transform transition-all duration-300">
+        <div  className="hidden lg:flex">
+          <Link to={"/login"} className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold shadow-md hover:scale-105 transform transition-all duration-300">
             Login
-          </a>
+          </Link>
         </div>
 
         {/* Small Screen Login */}
         <div className="lg:hidden">
-          <a className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold text-sm shadow-md hover:scale-105 transform transition-all duration-300">
+          <Link to={"/login"} className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold text-sm shadow-md hover:scale-105 transform transition-all duration-300">
             Login
-          </a>
+          </Link>
         </div>
       </div>
 
