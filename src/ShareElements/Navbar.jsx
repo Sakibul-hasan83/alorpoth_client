@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaBook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AuthContext from '../AuthenticationElements/AuthContext';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {user,logout}=useContext(AuthContext)
+
+
+
+const handleLogout =()=>{
+
+logout()
+
+}
 
   const links = [
     { name: 'Home', href: '#' },
@@ -57,9 +67,13 @@ const Navbar = () => {
 
         {/* Small Screen Login */}
         <div className="lg:hidden">
-          <Link to={"/login"} className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold text-sm shadow-md hover:scale-105 transform transition-all duration-300">
+         {
+
+user? <><button className="btn bg-red-500 hover:bg-pink-500 border-none text-white font-semibold text-sm shadow-md hover:scale-105 transform transition-all duration-300" onClick={handleLogout}>Logout </button></>:<> <Link to={"/login"} className="btn bg-pink-600 hover:bg-pink-500 border-none text-white font-semibold text-sm shadow-md hover:scale-105 transform transition-all duration-300">
             Login
-          </Link>
+          </Link></>
+
+         }
         </div>
       </div>
 

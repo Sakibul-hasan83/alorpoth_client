@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AuthContext from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+const navigate = useNavigate()
+const {signup,logout}=useContext(AuthContext)
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -12,6 +17,22 @@ const Signup = () => {
       return;
     }
     console.log("Signup details:", { email, password });
+
+ 
+    signup(email,password)
+    .then(result =>{
+      console.log("Succesfully signin",result.user);
+      alert("Successfully userCreated ")
+      return logout()
+    })
+
+    .then(()=>{
+      navigate ("/login")
+    })
+    .catch(error => console.log(error.message))
+
+
+
   };
 
   return (
