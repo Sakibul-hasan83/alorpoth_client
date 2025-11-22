@@ -8,7 +8,10 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
 const navigate = useNavigate()
-const {signup,logout}=useContext(AuthContext)
+const {signup,logout,user}=useContext(AuthContext)
+
+//sent data to mongodb 
+
 
   const handleSignup = (e) => {
     e.preventDefault();

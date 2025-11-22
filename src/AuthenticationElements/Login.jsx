@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
 
-const {login}=useContext(AuthContext)
+const {login,user}=useContext(AuthContext)
   const handleLogin = (e) => {
   
      e.preventDefault()
@@ -17,9 +18,17 @@ const {login}=useContext(AuthContext)
      console.log(email,password )
 
       login(email,password)
-      .then(res => {
+      .then(async(res) => {
         console.log("successfully login",res.user)
         alert("successfully Login")
+        
+
+const userInfo={
+  email: email,
+}
+
+       await axios.post("http://localhost:5000/users",userInfo)
+
 
       })
       .then(()=>{
